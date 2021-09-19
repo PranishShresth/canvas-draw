@@ -4,6 +4,11 @@ body {
 }
 
 #myCanvas {
-  height: 100vh;
+  height: calc(100vh - 50px);
   width: 100%;
+}
+.colorContainer {
+  display: grid;
+  grid-template-columns: repeat(8, 50px);
+  justify-content: center;
 }
