@@ -7,7 +7,13 @@ import React, {
   useLayoutEffect,
   useContext,
 } from "react";
-import { createRectangle, createSquare } from "./../utils/shapes";
+import {
+  createRectangle,
+  createSquare,
+  createEllipse,
+  createCircle,
+  createTriangle,
+} from "./../utils/shapes";
 import { CanvasContext } from "../context/CanvasContext";
 
 type MousePos = [number, number];
@@ -22,7 +28,9 @@ const Canvas: FunctionComponent = () => {
     // alert("ehll");
   };
   const handleMouseUp = useCallback((event: React.MouseEvent) => {
+    const ctx = canvasRef.current?.getContext("2d")!;
     setIsDrawing(false);
+    ctx.closePath();
   }, []);
 
   const handleMouseDown = useCallback((event: React.MouseEvent) => {
@@ -68,6 +76,15 @@ const Canvas: FunctionComponent = () => {
         break;
       case "Square":
         createSquare(ctx, x, y);
+        break;
+      case "Ellipse":
+        createEllipse(ctx, x, y);
+        break;
+      case "Circle":
+        createCircle(ctx, x, y);
+        break;
+      case "Triangle":
+        createTriangle(ctx, x, y);
         break;
       default:
         createSquare(ctx, x, y);
