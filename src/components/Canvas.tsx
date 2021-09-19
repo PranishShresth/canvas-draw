@@ -48,17 +48,17 @@ const Canvas: FunctionComponent = () => {
     },
     [selectedColor, isDrawing]
   );
-  useEffect(() => {}, []);
+  //   useEffect(() => {}, []);
 
-  useLayoutEffect(() => {
-    const canvas = canvasRef.current;
-    if (canvas) {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-  }, [canvasRef]);
+  //   useLayoutEffect(() => {
+  //     const canvas = canvasRef.current;
+  //     if (canvas) {
+  //       canvas.width = window.innerWidth;
+  //       canvas.height = window.innerHeight;
+  //     }
+  //   }, [canvasRef]);
   return (
-    <div className="wrapper">
+    <div className="canvasContainer">
       <canvas
         id="myCanvas"
         ref={canvasRef}

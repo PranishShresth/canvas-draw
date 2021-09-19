@@ -1,14 +1,31 @@
 html,
-body {
+body,
+#root,
+.mainContainer {
   height: 100%;
 }
 
 #myCanvas {
-  height: calc(100vh - 50px);
+  /* height: calc(100vh - 50px); */
   width: 100%;
 }
 .colorContainer {
   display: grid;
   grid-template-columns: repeat(8, 50px);
   justify-content: center;
+  grid-area: cl;
+}
+.drawerContainer {
+  grid-area: d;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+  background-color: #e5e5e5;
+}
+.canvasContainer {
+  grid-area: c;
+}
+.mainContainer {
+  display: grid;
+  grid-template-areas: "d c c c" "d c c c" "d cl cl cl";
+  grid-template-columns: 200px 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 100px;
 }
