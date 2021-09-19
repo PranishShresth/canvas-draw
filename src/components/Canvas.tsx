@@ -7,7 +7,7 @@ import React, {
   useLayoutEffect,
   useContext,
 } from "react";
-
+import { createRectangle, createSquare } from "./../utils/shapes";
 import { CanvasContext } from "../context/CanvasContext";
 
 type MousePos = [number, number];
@@ -57,17 +57,13 @@ const Canvas: FunctionComponent = () => {
   const handleArtifactDrop = (event: React.DragEvent) => {
     event.preventDefault();
     console.log("hi");
-    let data = event.dataTransfer.getData("data");
     const rect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-    const ctx = canvasRef.current?.getContext("2d")!;
-    ctx.beginPath();
-
-    ctx.rect(x, y, 150, 100);
-    ctx.stroke();
-    console.log(event.dataTransfer);
+    const shape = event.dataTransfer.getData("id");
   };
+
+  const handleShapes = (shape: string) => {};
   //   useEffect(() => {}, []);
 
   useLayoutEffect(() => {
@@ -87,6 +83,9 @@ const Canvas: FunctionComponent = () => {
         onDragOver={(ev) => ev.preventDefault()}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
+        onDragEnd={(ev: React.DragEvent) => {
+          console.log(ev.dataTransfer);
+        }}
         onContextMenu={handleContext}
       >
         Your browser does not support the HTML canvas tag.

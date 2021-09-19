@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 
 const Drawer: FunctionComponent = () => {
   const handleOptionDrag = (event: React.DragEvent) => {
-    event.dataTransfer.setData("data", "boi");
+    event.dataTransfer.setData("id", event.currentTarget.id);
   };
 
   const shapes: string[] = [
