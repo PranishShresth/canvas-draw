@@ -27,6 +27,7 @@ const Colors: FunctionComponent = () => {
       {colors.map((color: string) => {
         return (
           <div
+            key={color}
             style={{
               background: color,
               width: 50,
