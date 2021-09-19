@@ -58,12 +58,22 @@ const Canvas: FunctionComponent = () => {
     event.preventDefault();
     console.log("hi");
     const rect = event.currentTarget.getBoundingClientRect();
+    const ctx = canvasRef.current?.getContext("2d")!;
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
     const shape = event.dataTransfer.getData("id");
+    switch (shape) {
+      case "Rectangle":
+        createRectangle(ctx, x, y);
+        break;
+      case "Square":
+        createSquare(ctx, x, y);
+        break;
+      default:
+        createSquare(ctx, x, y);
+    }
   };
 
-  const handleShapes = (shape: string) => {};
   //   useEffect(() => {}, []);
 
   useLayoutEffect(() => {
