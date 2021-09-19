@@ -23,7 +23,17 @@ const Colors: FunctionComponent = () => {
   return (
     <div className="colorContainer">
       {colors.map((color: string) => {
-        return <div style={{ background: color, width: 50, height: 50 }}></div>;
+        return (
+          <div
+            style={{
+              background: color,
+              width: 50,
+              height: 50,
+              border: "1px solid black",
+              cursor: "pointer",
+            }}
+          ></div>
+        );
       })}
     </div>
   );
