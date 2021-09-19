@@ -15,6 +15,7 @@ const Canvas: FunctionComponent = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { selectedColor } = useContext(CanvasContext);
   const [mousePos, setMousePos] = useState<MousePos>([0, 0]);
+  const [startLine, setStartLine] = useState(40);
   const [isDrawing, setIsDrawing] = useState<boolean>(false);
 
   const handleContext = () => {
@@ -25,18 +26,27 @@ const Canvas: FunctionComponent = () => {
   }, []);
 
   const handleMouseDown = useCallback((event: React.MouseEvent) => {
+    const ctx = canvasRef.current?.getContext("2d")!;
+    ctx.beginPath();
+
     setIsDrawing(true);
   }, []);
   const handleMouseMove = useCallback(
     (event: React.MouseEvent) => {
-      if (canvasRef.current && isDrawing) {
+      //   setStartLine(startLine);
+      if (canvasRef.current) {
         const ctx = canvasRef.current?.getContext("2d")!;
-        ctx.strokeStyle = selectedColor;
-        ctx?.lineTo(event.clientX, event.clientY);
-        ctx?.stroke();
+        if (isDrawing) {
+          ctx.lineTo(event.clientX, event.clientY);
+          ctx.closePath();
+          ctx.strokeStyle = selectedColor;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+          ctx.moveTo(event.clientX, event.clientY);
+        }
       }
     },
-    [canvasRef, selectedColor, isDrawing]
+    [selectedColor, isDrawing]
   );
   useEffect(() => {}, []);
 
