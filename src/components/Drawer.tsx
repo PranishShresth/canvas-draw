@@ -4,16 +4,30 @@ const Drawer: FunctionComponent = () => {
   const handleOptionDrag = (event: React.DragEvent) => {
     event.dataTransfer.setData("data", "boi");
   };
+
+  const shapes: string[] = [
+    "Circle",
+    "Rectangle",
+    "Square",
+    "Ellipse",
+    "Pentagon",
+  ];
   return (
     <div className="drawerContainer">
-      <div
-        className="drawerOption"
-        draggable={true}
-        onDragStart={handleOptionDrag}
-        onDragOver={(ev) => ev.preventDefault()}
-      >
-        Rectangle
-      </div>
+      {shapes.map((shape: string) => {
+        return (
+          <div
+            className="drawerOption"
+            draggable={true}
+            key={shape}
+            id={shape}
+            onDragStart={handleOptionDrag}
+            onDragOver={(ev) => ev.preventDefault()}
+          >
+            {shape}
+          </div>
+        );
+      })}
     </div>
   );
 };

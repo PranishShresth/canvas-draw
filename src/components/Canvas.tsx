@@ -31,6 +31,7 @@ const Canvas: FunctionComponent = () => {
 
     setIsDrawing(true);
   }, []);
+
   const handleMouseMove = useCallback(
     (event: React.MouseEvent) => {
       //   setStartLine(startLine);
@@ -38,8 +39,8 @@ const Canvas: FunctionComponent = () => {
         const ctx = canvasRef.current?.getContext("2d")!;
         const rect = event.currentTarget.getBoundingClientRect();
 
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
+        const x = event.clientX - rect.left + 60;
+        const y = event.clientY - rect.top + 60;
         if (isDrawing) {
           ctx.lineTo(x, y);
           ctx.closePath();
