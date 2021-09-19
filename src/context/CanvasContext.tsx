@@ -1,19 +1,24 @@
 import { createContext, FunctionComponent, useState } from "react";
 
-interface IContext {
-  color?: string;
-  setColor?: React.Dispatch<React.SetStateAction<string>>;
+export interface CanvasState {
+  selectedColor: string;
+  setSelectedColor: Function;
 }
-export const CanvasContext = createContext<IContext | null>(null);
+export const CanvasContext = createContext<CanvasState>({
+  selectedColor: "#000000",
+  setSelectedColor: () => {},
+});
 
 interface Props {
   children: React.ReactNode;
 }
 export const CanvasProvider: FunctionComponent<Props> = (props: Props) => {
-  const [color, setColor] = useState<string>("#000000");
+  const [selectedColor, setSelectedColor] = useState("#000000");
   return (
     <main className="mainContainer">
-      <CanvasContext.Provider value={{ color, setColor }}>
+      <CanvasContext.Provider
+        value={{ selectedColor, setSelectedColor: setSelectedColor }}
+      >
         {props.children}
       </CanvasContext.Provider>
     </main>

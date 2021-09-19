@@ -1,7 +1,8 @@
 import { FunctionComponent, useContext } from "react";
 import { CanvasContext } from "./../context/CanvasContext";
 const Colors: FunctionComponent = () => {
-  const { color } = useContext(CanvasContext);
+  const { setSelectedColor } = useContext(CanvasContext);
+
   const colors: string[] = [
     "#FFFFFF",
     "#C0C0C0",
@@ -32,6 +33,9 @@ const Colors: FunctionComponent = () => {
               height: 50,
               border: "1px solid black",
               cursor: "pointer",
+            }}
+            onClick={() => {
+              setSelectedColor(color);
             }}
           ></div>
         );
