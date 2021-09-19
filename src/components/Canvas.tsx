@@ -5,11 +5,15 @@ import React, {
   useState,
   useCallback,
   useLayoutEffect,
+  useContext,
 } from "react";
+
+import { CanvasContext } from "../context/CanvasContext";
 
 type MousePos = [number, number];
 const Canvas: FunctionComponent = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { selectedColor } = useContext(CanvasContext);
   const [mousePos, setMousePos] = useState<MousePos>([0, 0]);
 
   const handleContext = () => {
@@ -22,12 +26,14 @@ const Canvas: FunctionComponent = () => {
   const handleMouseDown = useCallback((event: React.MouseEvent) => {}, []);
   const handleMouseMove = useCallback(
     (event: React.MouseEvent) => {
-      const ctx = canvasRef.current?.getContext("2d");
-      // console.log("hi");
-      ctx?.lineTo(event.clientX, event.clientY);
-      ctx?.stroke();
+      if (canvasRef.current) {
+        const ctx = canvasRef.current?.getContext("2d")!;
+        ctx.strokeStyle = selectedColor;
+        ctx?.lineTo(event.clientX, event.clientY);
+        ctx?.stroke();
+      }
     },
-    [canvasRef]
+    [canvasRef, selectedColor]
   );
   useEffect(() => {}, []);
 
