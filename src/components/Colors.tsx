@@ -1,6 +1,7 @@
-import { FunctionComponent } from "react";
-
+import { FunctionComponent, useContext } from "react";
+import { CanvasContext } from "./../context/CanvasContext";
 const Colors: FunctionComponent = () => {
+  const { color } = useContext(CanvasContext);
   const colors: string[] = [
     "#FFFFFF",
     "#C0C0C0",
