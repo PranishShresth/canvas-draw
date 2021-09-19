@@ -48,6 +48,8 @@ const Canvas: FunctionComponent = () => {
     },
     [selectedColor, isDrawing]
   );
+
+  const handleArtifactDrop = () => {};
   //   useEffect(() => {}, []);
 
   //   useLayoutEffect(() => {
@@ -62,6 +64,7 @@ const Canvas: FunctionComponent = () => {
       <canvas
         id="myCanvas"
         ref={canvasRef}
+        onDrop={}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
